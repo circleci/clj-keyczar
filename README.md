@@ -70,9 +70,11 @@ great, in fact, that they're all this wrapper currently supports. Those defaults
 
 Other stuff currently not supported:
 
-* assymetric encryption
+* asymmetric encryption
 * file-based keysets (the crypt and sign nses work with them, but the keyset ns does not; use [KeyczarTool](https://code.google.com/p/keyczar/wiki/KeyczarTool) to manage these keysets!)
 * pretty much anything that's not on the straight and narrow path of default keyczar behavior :P
+
+Feel free to open issues or submit PRs to improve the library :)
 
 ## License
 
