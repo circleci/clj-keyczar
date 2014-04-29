@@ -5,6 +5,7 @@ common uses, and support for key rotation and versioning (which are too often ov
 
 It is a wrapper for the wonderful Keyczar library. We exposed the basic common functionality
 with a simpler API:
+
 1. encrypt and decrypt data
 2. sign and verify messages
 3. manage keysets: add, demote and revoke keys
