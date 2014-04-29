@@ -5,8 +5,8 @@
            org.keyczar.interfaces.KeyczarReader))
 
 (defn ->crypter
-  "Tries to coerce its argument into a Crypter. Knows how to cope with Crypter, string,
-  keyset (map) and KeyczarReader inputs."
+  "Tries to coerce its argument into a Crypter. Knows how to cope with Crypter, keyset path
+  (string), keyset (map) and KeyczarReader inputs."
   [crypter-ish]
   (cond
     (isa? (type crypter-ish) Crypter) crypter-ish
@@ -20,7 +20,7 @@
 
 (defn encrypt
   "Encrypt a chunk of data, using the provided crypter (or *crypter* by default.) Returns
-  ciphertext."
+  ciphertext (a string.)"
   ([crypter-ish data]
    (.encrypt ^Crypter (->crypter crypter-ish) data))
   ([data]
@@ -29,7 +29,7 @@
 
 (defn decrypt
   "Decrypt a ciphertext, using the provided crypter (or *crypter* by default.) Returns
-  cleartext."
+  cleartext (a string.)"
   ([crypter-ish ciphertext]
    (.decrypt ^Crypter (->crypter crypter-ish) ciphertext))
   ([ciphertext]

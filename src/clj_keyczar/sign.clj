@@ -5,8 +5,8 @@
            org.keyczar.interfaces.KeyczarReader))
 
 (defn ->signer
-  "Tries to coerce its argument into a Signer. Knows to to cope with Signer, string,
-  keyset (map) and KeyczarReader inputs."
+  "Tries to coerce its argument into a Signer. Knows to to cope with Signer, keyset path
+  (string), keyset (map) and KeyczarReader inputs."
   [signer-ish]
   (cond
     (isa? (type signer-ish) Signer) signer-ish
@@ -19,7 +19,8 @@
 (defonce ^:dynamic *signer* nil)
 
 (defn sign
-  "Sign a message, using the provided signer (or *signer* by default.) Returns a signature."
+  "Sign a message, using the provided signer (or *signer* by default.) Returns a signature
+  (a string.)"
   ([signer-ish message]
    (.sign ^Signer (->signer signer-ish) message))
   ([message]
