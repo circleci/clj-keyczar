@@ -1,13 +1,16 @@
 # clj-keyczar
 
-A somewhat opinionated clojure wrapper around the [Keyczar](http://www.keyczar.org/) library.
+A simple clojure encryption and signing library, with safe, sensible defaults for the
+common uses, and support for key rotation and versioning (which are too often overlooked!)
 
-This doesn't expose the full set of Keyczar functionality! It basically uses the (very
-sensible) defaults for everything, and supports just the following:
+It is a wrapper for the wonderful Keyczar library. We exposed the basic common functionality
+with a simpler API:
+1. encrypt and decrypt data
+2. sign and verify messages
+3. manage keysets: add, demote and revoke keys
 
-* symmetric encryption and decryption
-* signing and verifying messages
-* managing keysets as clojure maps: adding, demoting and revoking keys
+The library can interoperate well with Keyczar classes. It's easy to keep using the simple
+clj-keyczar API, but reach down into the Keyczar java API when needed.
 
 ## Usage
 
@@ -47,18 +50,33 @@ Create a new signing keyset, add a key to it, sign and verify messages:
 The support for key versioning and rotation is really what makes Keyczar awesome, and it's
 frankly better documented better in
 [the Keyczar documentation](https://code.google.com/p/keyczar/). In a nutshell, this wrapper
-supports:
+provides an API in clj-keyczar.keyset, for:
 
 * creating new keysets, of purpose :crypt or :sign.
 * adding a key to a keyset. The newly added key will be primary and active.
 * demoting a key from a keyset.
 * revoking a key from a keyset.
 
-This library treats keysets as immutable; functions return brand-new keysets with the
+This API treats keysets as immutable; functions return brand-new keysets with the
 requested changes applied. You will almost certainly need a separate mechanism for persisting
 keysets. On the plus side, they're just trivially serializable maps. (For what it's worth,
 we use the same system for storing keysets that we use to e.g. propagate database credentals
 through our system.)
+
+# work with file-based keysets
+
+If you prefer, you can use the command-line
+[KeyczarTool](https://code.google.com/p/keyczar/wiki/KeyczarTool) to manage file-based
+keysets. Functions in the clj-keyczar.crypt and clj-keyczar.sign namespaces will happily
+accept a directory path (a string) instead of a keyset map, and otherwise work the same:
+
+```clojure
+(let [keyset-path "/tmp/test-keyset"
+      original "foo"
+      ciphertext (crypt/encrypt keyset-path original)
+      decrypted (crypt/decrypt keyset ciphertext)]
+  (assert (= original decrypted)))
+```
 
 ## Some crypto details
 
@@ -71,7 +89,8 @@ great, in fact, that they're all this wrapper currently supports. Those defaults
 Other stuff currently not supported:
 
 * asymmetric encryption
-* file-based keysets (the crypt and sign nses work with them, but the keyset ns does not; use [KeyczarTool](https://code.google.com/p/keyczar/wiki/KeyczarTool) to manage these keysets!)
+* internally encrypted keysets
+* keyset operations on file-based keysets (just use KeyczarTool)
 * pretty much anything that's not on the straight and narrow path of default keyczar behavior :P
 
 Feel free to open issues or submit PRs to improve the library :)
