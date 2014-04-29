@@ -56,9 +56,8 @@ Create a new signing keyset, add a key to it, sign and verify messages:
 # keyset operations
 
 The support for key versioning and rotation is really what makes Keyczar awesome, and it's
-frankly better documented better in
-[the Keyczar documentation](https://code.google.com/p/keyczar/). In a nutshell, this wrapper
-provides an API in clj-keyczar.keyset, for:
+frankly better described in [the Keyczar documentation](https://code.google.com/p/keyczar/).
+In a nutshell, this wrapper provides an API in clj-keyczar.keyset, for:
 
 * creating new keysets, of purpose :crypt or :sign.
 * adding a key to a keyset. The newly added key will be primary and active.
