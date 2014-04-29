@@ -1,4 +1,4 @@
-(defproject circleci/clj-keyczar "0.1.1"
+(defproject circleci/clj-keyczar "0.1.2"
   :description "small, simple clojure wrapper for keyczar"
   :url "http://github.com/circleci/clj-keyczar"
   :license {:name "Eclipse Public License"

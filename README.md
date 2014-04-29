@@ -25,7 +25,7 @@ clj-keyczar API, but reach down into the Keyczar java API when needed.
 Add to your project.clj:
 
 ```clojure
-    :dependencies [[circleci/clj-keyczar "0.1.0"]]
+    :dependencies [[circleci/clj-keyczar "0.1.2"]]
 ```
 
 # crypt/decrypt
