@@ -74,6 +74,14 @@
     (.addVersion ^GenericKeyczar generic-keyczar KeyStatus/PRIMARY)
     (Keyczar->keyset generic-keyczar)))
 
+(defn promote
+  "Promote a specified key. An active key will be promoted to primary; an inactive key will
+  be made active. Does not modify its inputs: returns a new keyset."
+  [keyset version]
+  (let [generic-keyczar (->GenericKeyczar keyset)]
+    (.promote ^GenericKeyczar generic-keyczar (int version))
+    (Keyczar->keyset generic-keyczar)))
+
 (defn demote
   "Demote a specified key. A primary key will be demoted to active; an active key will be
   made inactive. Does not modify its inputs: returns a new keyset."

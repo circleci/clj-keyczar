@@ -8,7 +8,7 @@ with a simpler API:
 
 1. encrypt and decrypt data
 2. sign and verify messages
-3. manage keysets: add, demote and revoke keys
+3. manage keysets: add, promote, demote and revoke keys
 
 clj-keyczar uses simple clojure maps to represent keysets. They are trivially
 (de-)serialized into your storage of choice (at CircleCI, for example, keysets are
