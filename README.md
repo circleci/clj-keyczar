@@ -1,4 +1,4 @@
-# clj-keyczar
+# clj-keyczar [![Circle CI](https://circleci.com/gh/circleci/clj-keyczar.png?style=badge)](https://circleci.com/gh/circleci/clj-keyczar)
 
 A simple clojure encryption and signing library, with safe, sensible defaults for the
 common uses, and support for key rotation and versioning (which are too often overlooked!)
